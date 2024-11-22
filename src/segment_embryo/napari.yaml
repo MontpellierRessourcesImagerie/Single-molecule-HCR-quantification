@@ -9,29 +9,13 @@ contributions:
     - id: segment-embryo.make_sample_data
       python_name: segment_embryo._sample_data:make_sample_data
       title: Load sample data from Embryo Segmentation
-    - id: segment-embryo.make_container_widget
-      python_name: segment_embryo:ImageThreshold
-      title: Make threshold Container widget
-    - id: segment-embryo.make_magic_widget
-      python_name: segment_embryo:threshold_magic_widget
-      title: Make threshold magic widget
-    - id: segment-embryo.make_function_widget
-      python_name: segment_embryo:threshold_autogenerate_widget
-      title: Make threshold function widget
     - id: segment-embryo.make_qwidget
-      python_name: segment_embryo:ExampleQWidget
-      title: Make example QWidget
+      python_name: segment_embryo:EmbryoSegmentationWidget
+      title: Embryo Segmentation
   sample_data:
     - command: segment-embryo.make_sample_data
       display_name: Embryo Segmentation
       key: unique_id.1
   widgets:
-    - command: segment-embryo.make_container_widget
-      display_name: Container Threshold
-    - command: segment-embryo.make_magic_widget
-      display_name: Magic Threshold
-    - command: segment-embryo.make_function_widget
-      autogenerate: true
-      display_name: Autogenerate Threshold
     - command: segment-embryo.make_qwidget
-      display_name: Example QWidget
+      display_name: Embryo Segmentation Widget
