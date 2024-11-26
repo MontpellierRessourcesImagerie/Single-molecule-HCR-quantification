@@ -29,6 +29,10 @@ dependencies = [
     "magicgui",
     "qtpy",
     "scikit-image",
+    "cellpose",
+    "czifile",
+    "big-fish",
+    "scikit-image"
 ]
 
 [project.optional-dependencies]
