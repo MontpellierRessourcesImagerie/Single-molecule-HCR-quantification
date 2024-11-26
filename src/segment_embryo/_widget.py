@@ -1,5 +1,7 @@
 import time
 from typing import TYPE_CHECKING
+
+import numpy as np
 from PyQt5.QtWidgets import QGroupBox, QFormLayout, QVBoxLayout
 from qtpy.QtWidgets import QHBoxLayout, QPushButton, QWidget
 from segment_embryo.napari_util import NapariUtil
@@ -91,10 +93,11 @@ class EmbryoSegmentationWidget(QWidget):
     def _new_segmentation(self, mask):
         membranesLayerName = self.membranesLayerCombo.currentText()
         name = "Labels of " + membranesLayerName
-        self.viewer.add_labels(mask, name=name)
-        self.viewer.layers[name].scale = self.viewer.layers[membranesLayerName].scale[-3: ]
+        maskImage = np.array([mask])
+        self.viewer.add_labels(maskImage, name=name)
+        self.viewer.layers[name].scale = self.viewer.layers[membranesLayerName].scale[-4: ]
         self.viewer.layers[name].translate = self.viewer.layers[membranesLayerName].translate[-3: ]
-        self.viewer.layers[name].units = self.viewer.layers[membranesLayerName].units[-3: ]
+        self.viewer.layers[name].units = self.viewer.layers[membranesLayerName].units[-4: ]
         self.progressThread.stop()
 
 
