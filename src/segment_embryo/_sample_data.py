@@ -30,13 +30,16 @@ def make_sample_data():
 
     return [(nuclei,
              {'scale': scale,
+              'units':  ('nm', 'nm', 'nm'),
               'name': 'nuclei (segment-embryo example image)'}),
             (spots,
              {'scale': scale,
+              'units': ('nm', 'nm', 'nm'),
               'name': 'spots (segment-embryo example image)'},
              ),
             (membranes,
              {'scale': scale,
+              'units': ('nm', 'nm', 'nm'),
               'name': 'membranes (segment-embryo example image)'},
              )
             ]
