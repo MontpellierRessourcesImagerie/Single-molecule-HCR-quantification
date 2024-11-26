@@ -10,6 +10,7 @@ Replace code below according to your needs.
 from __future__ import annotations
 
 import numpy
+from skimage import io
 
 
 def make_sample_data():
@@ -19,4 +20,23 @@ def make_sample_data():
     # Check the documentation for more information about the
     # add_image_kwargs
     # https://napari.org/stable/api/napari.Viewer.html#napari.Viewer.add_image
-    return [(numpy.random.rand(512, 512), {})]
+    scale = (1000, 76.0005, 76.0005	)
+    nucleiData = io.imread('https://dev.mri.cnrs.fr/attachments/download/3597/C1-240628_DAPI_MEMBRITE-546_EPHA-488_TBXT-594_OTX-647_SLOWFADE_2.tif')
+    nuclei = numpy.array(nucleiData)
+    spotsData = io.imread('https://dev.mri.cnrs.fr/attachments/download/3595/C4-240628_DAPI_MEMBRITE-546_EPHA-488_TBXT-594_OTX-647_SLOWFADE_2.tif')
+    spots = numpy.array(spotsData)
+    membranesData = io.imread('https://dev.mri.cnrs.fr/attachments/download/3596/C5-240628_DAPI_MEMBRITE-546_EPHA-488_TBXT-594_OTX-647_SLOWFADE_2.tif')
+    membranes = numpy.array(membranesData)
+
+    return [(nuclei,
+             {'scale': scale,
+              'name': 'nuclei (segment-embryo example image)'}),
+            (spots,
+             {'scale': scale,
+              'name': 'spots (segment-embryo example image)'},
+             ),
+            (membranes,
+             {'scale': scale,
+              'name': 'membranes (segment-embryo example image)'},
+             )
+            ]
