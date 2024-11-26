@@ -8,7 +8,6 @@ authors = [
   {name = "Volker Baecker"},
   {email = "volker.baecker@mri.cnrs.fr"},
 ]
-url = "https://github.com/MontpellierRessourcesImagerie/segment-embryo"
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Framework :: napari",
