@@ -94,6 +94,7 @@ class EmbryoSegmentationWidget(QWidget):
         self.viewer.add_labels(mask, name=name)
         self.viewer.layers[name].scale = self.viewer.layers[membranesLayerName].scale[-3: ]
         self.viewer.layers[name].translate = self.viewer.layers[membranesLayerName].translate[-3: ]
+        self.viewer.layers[name].units = self.viewer.layers[membranesLayerName].units[-3: ]
         self.progressThread.stop()
 
 
