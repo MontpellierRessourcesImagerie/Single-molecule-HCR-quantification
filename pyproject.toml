@@ -8,6 +8,7 @@ authors = [
   {name = "Volker Baecker"},
   {email = "volker.baecker@mri.cnrs.fr"},
 ]
+url = "https://github.com/MontpellierRessourcesImagerie/segment-embryo"
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Framework :: napari",
@@ -51,6 +52,12 @@ testing = [
 [project.entry-points."napari.manifest"]
 segment-embryo = "segment_embryo:napari.yaml"
 
+[project.urls]
+Homepage = "https://github.com/MontpellierRessourcesImagerie/segment-embryo"
+Documentation = "https://github.com/MontpellierRessourcesImagerie/segment-embryo#segment-embryo"
+Repository = "https://github.com/MontpellierRessourcesImagerie/segment-embryo.git"
+Issues = "https://github.com/MontpellierRessourcesImagerie/segment-embryo/issues"
+Changelog = "https://github.com/MontpellierRessourcesImagerie/segment-embryo/releases"
 
 
 [build-system]
