@@ -32,7 +32,9 @@ dependencies = [
     "cellpose",
     "czifile",
     "napari-czifile2",
+    "set-calibration",
     "big-fish",
+    "napari-bigfish",
     "scikit-image"
 ]
 
