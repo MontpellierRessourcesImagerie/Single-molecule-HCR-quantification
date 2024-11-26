@@ -11,8 +11,12 @@ def runCellposeOnScaledImage(membranes, nuclei, scale=(1,1,1), scaleFactor=8, mo
     depth, height, width = membranes.shape[-3: ]
     scaleZ, scaleY, scaleX = scale[-3: ]
     zFactor = scaleZ / scaleX
-    smallNuclei = rescale(nuclei, (1, zFactor / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor))
-    smallMembranes = rescale(membranes, (1, zFactor / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor))
+    if len(scale) < 4:
+        smallNuclei = rescale(nuclei, (zFactor / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor))
+        smallMembranes = rescale(membranes, (zFactor / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor))
+    else:
+        smallNuclei = rescale(nuclei, (1, zFactor / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor))
+        smallMembranes = rescale(membranes, (1, zFactor / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor))
     from cellpose import models
     image = np.concatenate((smallMembranes, smallNuclei))
     CP = models.CellposeModel(model_type=modelType, gpu=True)
