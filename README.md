@@ -7,7 +7,7 @@
 [![codecov](https://codecov.io/gh/MontpellierRessourcesImagerie/segment-embryo/branch/main/graph/badge.svg)](https://codecov.io/gh/MontpellierRessourcesImagerie/segment-embryo)
 [![napari hub](https://img.shields.io/endpoint?url=https://api.napari-hub.org/shields/segment-embryo)](https://napari-hub.org/plugins/segment-embryo)
 
-3D Segment ascidian embryos using cellpose. The images are first rescaled to be isotropic and then downscaled, before cellpose is used. The resulting labels are upscaled to match the original data.
+<img src="https://github.com/user-attachments/assets/4459f48c-435f-489d-b27c-25a4ea390871" align='left' width="30%"></img> 3D Segment ascidian embryos using cellpose. The images are first rescaled to be isotropic and then downscaled, before cellpose is used. The resulting labels are upscaled to match the original data.
 
 ----------------------------------
 
