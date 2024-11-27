@@ -32,6 +32,7 @@ class EmbryoSegmentationWidget(QWidget):
         self.layout().addWidget(self.getSegmentEmbryoWidget())
         self.viewer.layers.events.inserted.connect(self.onLayerAddedOrRemoved)
         self.viewer.layers.events.removed.connect(self.onLayerAddedOrRemoved)
+        self.worker = None
 
 
     def getSegmentEmbryoWidget(self):
@@ -75,6 +76,7 @@ class EmbryoSegmentationWidget(QWidget):
         )
         cp_worker.returned.connect(self._new_segmentation)
         cp_worker.start()
+        self.worker = cp_worker
         self.progressThread = IndeterminateProgressThread("Segmenting embryo...")
         self.progressThread.start()
 

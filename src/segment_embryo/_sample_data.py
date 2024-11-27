@@ -14,12 +14,8 @@ from skimage import io
 
 
 def make_sample_data():
-    """Generates an image"""
-    # Return list of tuples
-    # [(data1, add_image_kwargs1), (data2, add_image_kwargs2)]
-    # Check the documentation for more information about the
-    # add_image_kwargs
-    # https://napari.org/stable/api/napari.Viewer.html#napari.Viewer.add_image
+    """Download a sample image"""
+
     scale = (1, 1000, 76.0005, 76.0005)
     units = ('pixel', 'nm', 'nm', 'nm')
     nucleiData = io.imread('https://dev.mri.cnrs.fr/attachments/download/3597/C1-240628_DAPI_MEMBRITE-546_EPHA-488_TBXT-594_OTX-647_SLOWFADE_2.tif')
