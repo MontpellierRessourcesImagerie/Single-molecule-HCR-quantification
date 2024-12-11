@@ -43,11 +43,21 @@ Open the plugin [Scale-Tool plugin](https://pypi.org/project/set-calibration/) f
 
 ### 3. Segmenting the cells of the embryo
 
-<img src="https://github.com/user-attachments/assets/1b464f39-47ff-412d-bdb8-c2d61837af39" align='left' width="30%"></img> 
+<img src="https://github.com/user-attachments/assets/1b464f39-47ff-412d-bdb8-c2d61837af39" align='right' width="30%"></img> 
 
 Close the [Scale-Tool plugin](https://pypi.org/project/set-calibration/) plugin and open the ``Embryo Segmentation``-plugin from the ``Plugins``-menu. Select the layer containing the membranes as ``input image`` and the layer containing the nuclei as ``nuclei image``. Press the ``run`` button and wait until the segmentation is finished. When the segmentation is finished a ``Labels layer`` with the result will be added to the layers list. 
 
-<img src="https://github.com/user-attachments/assets/4dcf8aad-22ef-4a20-a6a6-50bcb81c7011" align='left' width="30%"></img> 
+<img src="https://github.com/user-attachments/assets/4dcf8aad-22ef-4a20-a6a6-50bcb81c7011" align='left' width="20%"></img> 
+
+### 4. Exporting and curating the labels
+
+If the labels need curation, select  the labels layer and save it to a tiff-file via the menu ``File>Save Selected Layers...``. Import the saved labels into the [Morphonet 2 standalone client](https://morphonet.org/downloads), make the corrrections and export the corrected labels to a tiff-file. Open the tiff-file in napari.
+
+### 5. Counting spots per cell
+
+Close the ``Embryo Segmentation`` plugin, select the layer containing the mRNA-spots and open the [Detect FISH spots-plugin](https://www.napari-hub.org/plugins/napari-bigfish) from the ``Plugins``-menu. Estimate the spot size in xy and z in ImageJ and enter the values into the corresponding fields. You can either estimate the threshold let the software find a threshold value. Press the ``detect spots button``. Depending on the result you might want to modify the threshold-value and run the plugin again.
+
+<img src="https://github.com/user-attachments/assets/6507eb3e-d732-4d69-8c63-02d83f8975f1" align='left' width="30%"></img> 
 
 
 ## Contributing
