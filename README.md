@@ -43,9 +43,11 @@ Open the plugin [Scale-Tool plugin](https://pypi.org/project/set-calibration/) f
 
 ### 3. Segmenting the cells of the embryo
 
-![image](https://github.com/user-attachments/assets/1b464f39-47ff-412d-bdb8-c2d61837af39)
+<img src="https://github.com/user-attachments/assets/1b464f39-47ff-412d-bdb8-c2d61837af39" align='left' width="30%"></img> 
 
 Close the [Scale-Tool plugin](https://pypi.org/project/set-calibration/) plugin and open the ``Embryo Segmentation``-plugin from the ``Plugins``-menu. Select the layer containing the membranes as ``input image`` and the layer containing the nuclei as ``nuclei image``. Press the ``run`` button and wait until the segmentation is finished. When the segmentation is finished a ``Labels layer`` with the result will be added to the layers list. 
+
+<img src="https://github.com/user-attachments/assets/4dcf8aad-22ef-4a20-a6a6-50bcb81c7011" align='left' width="30%"></img> 
 
 
 ## Contributing
