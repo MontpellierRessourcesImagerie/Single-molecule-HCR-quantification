@@ -27,8 +27,15 @@ You can install `segment-embryo` via [pip]:
 
     pip install segment-embryo
 
+## Usage
 
+We will segment the cells of an embryo and count the mRNA spots tagged in another channel per cell.
 
+### 1. Opening an image
+
+Drag a tif- or czi-file from your file-browser and drop it into the napari window. The image will opened. The napari-plugin [napari-czifile2](https://github.com/BodenmillerGroup/napari-czifile2) is used to open czi-files.
+
+### 2. Checking and modifying the voxel size 
 
 ## Contributing
 
