@@ -37,6 +37,10 @@ Drag a tif- or czi-file from your file-browser and drop it into the napari windo
 
 ### 2. Checking and modifying the voxel size 
 
+Open the plugin [Scale-Tool plugin](https://pypi.org/project/set-calibration/) from the ``Plugins``-menu. Make sure the voxel-size values are set correctly in nm. Correct the values and the unit if necessary and press the ``Apply to all`` button.
+
+<img src="https://github.com/user-attachments/assets/409b669b-675f-495f-ba11-c6ded0442b2b" align='left' width="30%"></img> 
+
 ## Contributing
 
 Contributions are very welcome. Tests can be run with [tox], please ensure
