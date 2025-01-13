@@ -2,13 +2,14 @@ import time
 from typing import TYPE_CHECKING
 
 import numpy as np
-from PyQt5.QtWidgets import QGroupBox, QFormLayout, QVBoxLayout
+from PyQt5.QtWidgets import QGroupBox, QFormLayout, QVBoxLayout, QCheckBox
 from qtpy.QtWidgets import QHBoxLayout, QPushButton, QWidget
 from segment_embryo.napari_util import NapariUtil
 from segment_embryo.qtutil import WidgetTool
 from napari.utils.events import Event
 from napari.layers.image.image import Image
 from segment_embryo.segmentation import runCellposeOnScaledImage
+from segment_embryo.segmentation import runSegmentNucleiOnScaledImage
 from napari.qt.threading import create_worker
 from napari.utils import progress
 
@@ -25,14 +26,17 @@ class EmbryoSegmentationWidget(QWidget):
         self.napariUtil = NapariUtil(self.viewer)
         self.setLayout(QVBoxLayout())
         self.progressThread = None
+        self.progressThread2 = None
         self.membranesLayerCombo = None
         self.nucleiLayerCombo = None
         self.scalingFactorInput = None
+        self.segmentNucleiCheckbox = None
         self.scalingFactor = 8
         self.layout().addWidget(self.getSegmentEmbryoWidget())
         self.viewer.layers.events.inserted.connect(self.onLayerAddedOrRemoved)
         self.viewer.layers.events.removed.connect(self.onLayerAddedOrRemoved)
         self.worker = None
+        self.worker2 = None
 
 
     def getSegmentEmbryoWidget(self):
@@ -49,9 +53,11 @@ class EmbryoSegmentationWidget(QWidget):
                                                                         "scaling factor: ",
                                                                         self.scalingFactor,
                                                                                50)
+        self.segmentNucleiCheckbox = QCheckBox("segment nuclei")
         formLayout.addRow(inputImageLabel, self.membranesLayerCombo)
         formLayout.addRow(nucleiImageLabel, self.nucleiLayerCombo)
         formLayout.addRow(scalingFactorLabel, self.scalingFactorInput)
+        formLayout.addRow(self.segmentNucleiCheckbox)
         btn = QPushButton("run")
         btn.clicked.connect(self._on_click)
         verticalLayout = QVBoxLayout()
@@ -79,6 +85,17 @@ class EmbryoSegmentationWidget(QWidget):
         self.worker = cp_worker
         self.progressThread = IndeterminateProgressThread("Segmenting embryo...")
         self.progressThread.start()
+        if self.segmentNucleiCheckbox.isChecked():
+            cp_worker2 = runSegmentNucleiOnScaledImage(
+                nuclei,
+                scale=scale,
+                scaleFactor=self.scalingFactor
+            )
+            cp_worker2.returned.connect(self._new_nuclei_segmentation)
+            cp_worker2.start()
+            self.worker2 = cp_worker2
+            self.progressThread2 = IndeterminateProgressThread("Segmenting nuclei...")
+            self.progressThread2.start()
 
 
     def onLayerAddedOrRemoved(self, event: Event):
@@ -101,6 +118,17 @@ class EmbryoSegmentationWidget(QWidget):
         self.viewer.layers[name].translate = self.viewer.layers[membranesLayerName].translate[-3: ]
         self.viewer.layers[name].units = self.viewer.layers[membranesLayerName].units[-4: ]
         self.progressThread.stop()
+
+
+    def _new_nuclei_segmentation(self, mask):
+        nucleiLayerName = self.nucleiLayerCombo.currentText()
+        name = "Mask of " + nucleiLayerName
+        maskImage = np.array([mask])
+        self.viewer.add_labels(maskImage, name=name)
+        self.viewer.layers[name].scale = self.viewer.layers[nucleiLayerName].scale[-4:]
+        self.viewer.layers[name].translate = self.viewer.layers[nucleiLayerName].translate[-3:]
+        self.viewer.layers[name].units = self.viewer.layers[nucleiLayerName].units[-4:]
+        self.progressThread2.stop()
 
 
 
