@@ -53,12 +53,25 @@ Close the [Scale-Tool plugin](https://pypi.org/project/set-calibration/) and ope
 
 If the labels need curation, select  the labels layer and save it to a tiff-file via the menu ``File>Save Selected Layers...``. Import the saved labels into the [Morphonet 2 standalone client](https://morphonet.org/downloads), make the corrrections and export the corrected labels to a tiff-file. Open the tiff-file in napari.
 
-### 5. Counting spots per cell
+### 5. Detecting spots
 
 Close the ``Embryo Segmentation`` plugin, select the layer containing the mRNA-spots and open the [Detect FISH spots-plugin](https://www.napari-hub.org/plugins/napari-bigfish) from the ``Plugins``-menu. Estimate the spot size in xy and z in ImageJ and enter the values into the corresponding fields. You can either estimate the threshold let the software find a threshold value. Press the ``detect spots button``. Depending on the result you might want to modify the threshold-value and run the plugin again.
 
 <img src="https://github.com/user-attachments/assets/6507eb3e-d732-4d69-8c63-02d83f8975f1" align='left' width="30%"></img> 
 
+### 6. Counting Spots per cell
+
+In the ``Spot Counting`` section of the plugin, select the spots layer as input and the labels layer for the ``cytoplasm labels`` and also for the ``nuclei labels``. 
+
+![image](https://github.com/user-attachments/assets/445da47f-c3fc-4437-803d-e635500bf1af)
+
+Press the ``Count Spots`` button! You will obtain a table with the numbers of spots per cell. If you provide the image twice, for the cytoplasm as well as for the nuclei, the spots will all be counted inside the nuclei. If you also want to know per cell how many spots are in the nucleus and how many are in the cytoplasm, you need to provide a mask or label image for the nuclei. You can obtain one by thresholding the nucleus image or by selecting ``segment nuclei`` in step 3.
+
+
+<img src="https://github.com/user-attachments/assets/7f325bc5-baaf-4b74-b240-f174b81d0e96" align='left' width="30%"></img>
+<img src="https://github.com/user-attachments/assets/463072c7-d647-4d23-90d9-15de3398bf31" align='right' width="30%"></img>
+
+You can copy the data from the table to your spreadsheat software. Activate the table by clicking into it and press ``ctrl+a`` to select all rows and columns. Press ``ctrl+c`` to copy the data to the clipboard and ``ctrl+v`` to paste it into your spreadsheet.
 
 ## Contributing
 
