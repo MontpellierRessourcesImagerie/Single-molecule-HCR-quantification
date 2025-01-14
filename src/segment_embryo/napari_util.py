@@ -1,5 +1,9 @@
+import numpy as np
+from pint import Unit
 from napari.layers.labels.labels import Labels
 from napari.layers.points.points import Points
+
+
 
 class NapariUtil:
     """ Utility methods for the napari image viewer.
@@ -53,3 +57,16 @@ class NapariUtil:
             if layer.name == name:
                 return layer.data
         return None
+
+
+    def copyLayerProperties(self, srcLayerName, destLayerName):
+        scale = self.viewer.layers[srcLayerName].scale[-4:]
+        translate = self.viewer.layers[srcLayerName].translate[-4:]
+        units = list(self.viewer.layers[srcLayerName].units[-4:])
+        if len(self.viewer.layers[destLayerName].data.shape) > 3 and len(self.viewer.layers[srcLayerName].data.shape) < 4:
+            scale = np.insert(scale, 0, [1])
+            translate = np.insert(translate, 0, [1])
+            units = [Unit("1")] + units
+        self.viewer.layers[destLayerName].scale = scale
+        self.viewer.layers[destLayerName].translate = translate
+        self.viewer.layers[destLayerName].units = units

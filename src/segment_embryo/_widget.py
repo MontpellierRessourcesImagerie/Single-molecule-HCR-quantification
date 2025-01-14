@@ -113,10 +113,10 @@ class EmbryoSegmentationWidget(QWidget):
         membranesLayerName = self.membranesLayerCombo.currentText()
         name = "Labels of " + membranesLayerName
         maskImage = np.array([mask])
+        if len(self.viewer.layers[membranesLayerName].data.shape) < 4:
+            maskImage = np.squeeze(maskImage)
         self.viewer.add_labels(maskImage, name=name)
-        self.viewer.layers[name].scale = self.viewer.layers[membranesLayerName].scale[-4: ]
-        self.viewer.layers[name].translate = self.viewer.layers[membranesLayerName].translate[-3: ]
-        self.viewer.layers[name].units = self.viewer.layers[membranesLayerName].units[-4: ]
+        self.napariUtil.copyLayerProperties(membranesLayerName, name)
         self.progressThread.stop()
 
 
@@ -124,10 +124,10 @@ class EmbryoSegmentationWidget(QWidget):
         nucleiLayerName = self.nucleiLayerCombo.currentText()
         name = "Mask of " + nucleiLayerName
         maskImage = np.array([mask])
+        if len(self.viewer.layers[nucleiLayerName].data.shape) < 4:
+            maskImage = np.squeeze(maskImage)
         self.viewer.add_labels(maskImage, name=name)
-        self.viewer.layers[name].scale = self.viewer.layers[nucleiLayerName].scale[-4:]
-        self.viewer.layers[name].translate = self.viewer.layers[nucleiLayerName].translate[-3:]
-        self.viewer.layers[name].units = self.viewer.layers[nucleiLayerName].units[-4:]
+        self.napariUtil.copyLayerProperties(nucleiLayerName, name)
         self.progressThread2.stop()
 
 

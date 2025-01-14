@@ -18,6 +18,9 @@ def runCellposeOnScaledImage(membranes, nuclei, scale=(1,1,1), scaleFactor=8, mo
         smallNuclei = rescale(nuclei, (1, zFactor / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor))
         smallMembranes = rescale(membranes, (1, zFactor / scaleFactor, 1.0 / scaleFactor, 1.0 / scaleFactor))
     from cellpose import models
+    if len(membranes.shape) < 4:
+        smallNuclei = np.expand_dims(smallNuclei, axis=0)
+        smallMembranes = np.expand_dims(smallMembranes, axis=0)
     image = np.concatenate((smallMembranes, smallNuclei))
     CP = models.CellposeModel(model_type=modelType, gpu=True)
     masks, flows, _ = CP.eval(image, do_3D=True)
